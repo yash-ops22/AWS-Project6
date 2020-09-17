@@ -21,80 +21,51 @@ Deploy the Wordpress application on Kubernetes and AWS using terraform including
 # Steps
 Creating AWS RDS instance with security Group...
 
-       provider "aws" {
-         region     = "ap-south-1"
-         profile    = "Yashu"
+    provider "aws" {
+    region     = "ap-south-1"
+    profile    = "Yashu"
+    }
 
-}
+    resource "aws_security_group" "sg-rds" {
+    name        = "rds-database"
+    vpc_id      = "vpc-12a7486f"
 
-resource "aws_security_group" "sg-rds" {
+     ingress {
+     description = "VPC"
+     from_port   = 3306
+     to_port     = 3306
+     protocol    = "tcp"
+     cidr_blocks = ["0.0.0.0/0"]
+     }
+     egress {
+     from_port   = 0
+     to_port     = 0
+     protocol    = "-1"
+     cidr_blocks = ["0.0.0.0/0"]
+     }
 
-  name        = "rds-database"
+    tags = {
+      Name = "rds-database"
+     }
+   }
 
-  vpc_id      = "vpc-12a7486f"
+    resource "aws_db_instance" "wordpress-rds" {
+     allocated_storage    = 10
+     storage_type         = "gp2"
+     engine               = "mysql"
+     engine_version       = "5.7"
+     identifier           = "database"
+     instance_class       = "db.t2.micro"
+     name                 = "mydb"
+     username             = "wordpress"
+     password             = "10987654321"
+     parameter_group_name = "default.mysql5.7"
+     publicly_accessible  = "true"
+     port                 = "3303"
+     final_snapshot_identifier = "false"
+     skip_final_snapshot = "true"
+    }
 
-  ingress {
 
-    description = "VPC"
 
-    from_port   = 3306
-
-    to_port     = 3306
-
-    protocol    = "tcp"
-
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-
-  egress {
-
-    from_port   = 0
-
-    to_port     = 0
-
-    protocol    = "-1"
-
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-
-  tags = {
-
-    Name = "rds-database"
-
-  }
-
-}
-
-resource "aws_db_instance" "wordpress-rds" {
-
-  allocated_storage    = 10
-
-  storage_type         = "gp2"
-
-  engine               = "mysql"
-
-  engine_version       = "5.7"
-
-  identifier           = "database"
-
-  instance_class       = "db.t2.micro"
-
-  name                 = "mydb"
-
-  username             = "wordpress"
-
-  password             = "10987654321"
-
-  parameter_group_name = "default.mysql5.7"
-
-  publicly_accessible  = "true"
-
-  port                 = "3303"
-
-  final_snapshot_identifier = "false"
-
-  skip_final_snapshot = "true"
-
-}
+      
