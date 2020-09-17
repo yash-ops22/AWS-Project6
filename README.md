@@ -93,8 +93,8 @@ Writing Terraform code for Launching AWS Relational DataBase Service...
 
     tags = {
       Name = "rds-database"
+       }
      }
-   }
 
     resource "aws_db_instance" "wordpress-rds" {
      allocated_storage    = 10
@@ -114,23 +114,23 @@ Writing Terraform code for Launching AWS Relational DataBase Service...
     }
 
 
-# Step
 
 For launching Wordpress we will start minikube to start kubernetes using the command..
 
       minikube start
-      
+
+
 Now we will deploy Wordpress using the kubernetes, writing the code for wordpress deployment...
 
 
 
-resource "kubernetes_service" "service" {
-    depends_on = [kubernetes_deployment.MyDeploy]
-  metadata {
-    name = "my-service"
-  }
-    spec {
-    selector = {
+      resource "kubernetes_service" "service" {
+         depends_on = [kubernetes_deployment.MyDeploy]
+          metadata {
+          name = "my-service"
+     }
+      spec {
+      selector = {
       App = kubernetes_deployment.MyDeploy.metadata.0.labels.App
     }
     
@@ -141,8 +141,8 @@ resource "kubernetes_service" "service" {
     }
 
     type = "NodePort"
-    }  
-}
+     }  
+    }
 
     
     resource "kubernetes_deployment" "MyDeploy" {
@@ -177,15 +177,14 @@ resource "kubernetes_service" "service" {
          
          port {
                container_port = 80
-            }
+                  }
           
+             }
+           }
+         }
         }
+       }
       
-    }
-  }
-}
-
-}
       
 After writing the Whole code using the teraform command we will launch our infrastructure..
 for this we have to download terraform plugins using commands..
@@ -197,7 +196,7 @@ for this we have to download terraform plugins using commands..
      
      
     
-Now we will run the command.
+Now we will run the command to apply the code we have written
 
      terraform apply --auto-approve
      
@@ -228,7 +227,7 @@ We can check from our WebUI if our RDS service or database is launched or not..
 Now using the Minikube IP we acess our wordpress site..     
 
      
- <img src="wp1.png>
+ <img src="wp1.png">
     
     
  For connecting our wordpress to our database we can enter the RDS database details...
