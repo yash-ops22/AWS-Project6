@@ -1,9 +1,30 @@
 # Amazon RDS
-Amazon Relational Database Service is a distributed relational database 
-service by Amazon Web Services. It is a web service running "in the cloud"
-designed to simplify the setup, operation, and scaling of a relational 
-database for use in applications.
+Amazon Relational Database Service (Amazon RDS) makes it easy to set up,
+operate, and scale a relational database in the cloud. It provides cost-
+efficient and resizable capacity while automating time-consuming
+administration tasks such as hardware provisioning, database setup,
+patching and backups. It frees you to focus on your applications so you
+can give them the fast performance, high availability, security and
+compatibility they need.
 
+# Kubernetes
+
+Kubernetes is open source software that allows you to deploy and manage
+containerized applications at scale. Kubernetes manages clusters of
+Amazon EC2 compute instances and runs containers on those instances with 
+processes for deployment, maintenance, and scaling. Using Kubernetes,
+you can run any type of containerized applications using the same toolset 
+on-premises and in the cloud.
+
+For run Kubernetes Service we need minikube..
+
+# Minikube
+Minikube is a tool that makes it easy to run Kubernetes locally. Minikube
+runs a single-node Kubernetes cluster inside a Virtual Machine (VM) on 
+your laptop for users looking to try out Kubernetes or develop with it
+day-to-day.
+
+Minikube Features 
 # Task 
 Deploy the Wordpress application on Kubernetes and AWS using terraform including the following steps;
 
