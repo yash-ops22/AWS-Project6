@@ -189,15 +189,47 @@ for this we have to download terraform plugins using commands..
 
      terraform init
      
+     
+<img src="init.png">     
+     
+     
     
 Now we will run the command.
 
      terraform apply --auto-approve
      
-     
+ 
+ <img src="apply.png">
+ 
+ 
+ 
  With the kubectl commands we can see our deployed wordpress pods..
  
-     kubectl get pods
+     kubectl get all
      
+     
+  <img src="getall.png">
+  
+  
+  
      
 Now using the Minikube IP we acess our wordpress site..     
+
+     
+ <img src="wp1.png>
+    
+    
+ For connecting our wordpress to our database we can enter the RDS database details...
+ 
+ <img src="wp2.png">
+     
+     
+ For destroying whole infrastructure we can run terraform command
+ 
+      Terraform destroy --auto-approve
+      
+      
+   
+   Its DONE
+      
+  THANK YOU EVERYONE!!    
