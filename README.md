@@ -59,12 +59,16 @@ Deploy the Wordpress application on Kubernetes and AWS using terraform including
 4 We have to configure kubectl to launch wordpress.
 
 # Steps
-Creating AWS RDS instance with security Group...
+
+Confirguring the AWS profile in our CLI..
 
     provider "aws" {
     region     = "ap-south-1"
     profile    = "Yashu"
     }
+
+
+Writing Terraform code for Launching AWS Relational DataBase Service...
 
     resource "aws_security_group" "sg-rds" {
     name        = "rds-database"
