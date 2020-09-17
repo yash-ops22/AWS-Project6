@@ -7,8 +7,11 @@ patching and backups. It frees you to focus on your applications so you
 can give them the fast performance, high availability, security and
 compatibility they need.
 
-# Kubernetes
+<img src="rds.jpg">
 
+
+
+# Kubernetes
 Kubernetes is open source software that allows you to deploy and manage
 containerized applications at scale. Kubernetes manages clusters of
 Amazon EC2 compute instances and runs containers on those instances with 
@@ -16,7 +19,12 @@ processes for deployment, maintenance, and scaling. Using Kubernetes,
 you can run any type of containerized applications using the same toolset 
 on-premises and in the cloud.
 
-For run Kubernetes Service we need minikube..
+
+<img src="kubernetes.png">
+
+
+
+For running Kubernetes Service locally we need minikube..
 
 # Minikube
 Minikube is a tool that makes it easy to run Kubernetes locally. Minikube
