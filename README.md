@@ -62,13 +62,16 @@ Deploy the Wordpress application on Kubernetes and AWS using terraform including
 
 Confirguring the AWS profile in our CLI..
 
-    provider "aws" {
-    region     = "ap-south-1"
-    profile    = "Yashu"
-    }
+ <img src="configure.png">  
 
 
 Writing Terraform code for Launching AWS Relational DataBase Service...
+
+
+     provider "aws" {
+        region     = "ap-south-1"
+        profile    = "Yashu"
+     }
 
     resource "aws_security_group" "sg-rds" {
     name        = "rds-database"
@@ -203,6 +206,15 @@ Now we will run the command.
  
  
  
+We can check from our WebUI if our RDS service or database is launched or not..
+
+
+
+<img src="database.png">
+
+
+
+
  With the kubectl commands we can see our deployed wordpress pods..
  
      kubectl get all
