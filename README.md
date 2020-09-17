@@ -111,5 +111,93 @@ Writing Terraform code for Launching AWS Relational DataBase Service...
     }
 
 
+# Step
 
+For launching Wordpress we will start minikube to start kubernetes using the command..
+
+      minikube start
       
+Now we will deploy Wordpress using the kubernetes, writing the code for wordpress deployment...
+
+
+
+resource "kubernetes_service" "service" {
+    depends_on = [kubernetes_deployment.MyDeploy]
+  metadata {
+    name = "my-service"
+  }
+    spec {
+    selector = {
+      App = kubernetes_deployment.MyDeploy.metadata.0.labels.App
+    }
+    
+    port {
+      node_port   = 30202
+      port        = 8080
+      target_port = 80
+    }
+
+    type = "NodePort"
+    }  
+}
+
+    
+    resource "kubernetes_deployment" "MyDeploy" {
+      depends_on = [aws_db_instance.mysql]
+      metadata {
+      name = "wordpress"
+      labels = {
+        App = "MyApp"
+      }
+    }
+
+    spec {
+       replicas = 1
+
+       selector {
+         match_labels = {
+           App = "MyApp"
+         }
+       }
+
+       template {
+         metadata {
+          labels = {
+             App = "MyApp"
+            }
+       }
+
+      spec {
+        container {
+          image = "wordpress"
+          name  = "my-wordpress"
+         
+         port {
+               container_port = 80
+            }
+          
+        }
+      
+    }
+  }
+}
+
+}
+      
+After writing the Whole code using the teraform command we will launch our infrastructure..
+for this we have to download terraform plugins using commands..
+
+     terraform init
+     
+    
+Now we will run the command.
+
+     terraform apply --auto-approve
+     
+     
+ With the kubectl commands we can see our deployed wordpress pods..
+ 
+     kubectl get pods
+     
+     
+Now using the Minikube IP we acess our wordpress site..     
